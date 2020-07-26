@@ -51,12 +51,9 @@ const obj = {
 };
 
 function demo() {
-  const database = IndexDB.getInstance({ store });
-
+  // const database = IndexDB.getInstance({ store });
   // database.insertData("goods", storeData); // 耗时：insertData: 1266.023193359375ms
-
   // database.getAllData("goods").then((val: any) => console.log(val)); // 耗时：getAllData: 1787.199951171875ms
-
   // database
   //   .updateData({
   //     table: 'goods',
@@ -65,9 +62,7 @@ function demo() {
   //     data: { name: '海天上等蚝油260g0' }
   //   })
   //   .then((val: any) => console.log(val)); // 97.095947265625ms
-
   // database.getData('goods', 'name', '123').then((v: any) => console.log(v)); // getData: 66.400146484375ms
-
   // database
   //   .getDataByCursor('goods', IDBKeyRange.bound(0, 20))
   //   .then((val: any) => console.log(val)); //   getDataByCursor: 318.368896484375ms

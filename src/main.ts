@@ -250,32 +250,32 @@ class UseIndexDB {
     return Promise.resolve();
   }
 
-  // async getSSNByCursor(table: string, keyRange?: string | undefined) {
-  //   try {
-  //     console.time('getSSNByCursor');
-  //     const objectStore = await this.getObjectStore(table);
-  //     const cursorRequest = objectStore.openKeyCursor(keyRange);
+  async getSSNByCursor(table: string, keyRange?: string | undefined) {
+    try {
+      console.time("getSSNByCursor");
+      const objectStore = await this.getObjectStore(table);
+      const cursorRequest = objectStore.openKeyCursor(keyRange);
 
-  //     return new Promise((resolve, reject) => {
-  //       let results: any[] = [];
+      return new Promise((resolve, reject) => {
+        let results: any[] = [];
 
-  //       cursorRequest.onerror = reject;
-  //       cursorRequest.onsuccess = (e: any) => {
-  //         const cursor = e.target.result;
-  //         if (cursor) {
-  //           results.push(cursor.source);
-  //           cursor.continue();
-  //         } else {
-  //           console.timeEnd('getSSNByCursor');
-  //           // 遍历之后的 object 数据列表的结果
-  //           resolve(results);
-  //         }
-  //       };
-  //     });
-  //   } catch (error) {
-  //     return Promise.reject(error);
-  //   }
-  // }
+        cursorRequest.onerror = reject;
+        cursorRequest.onsuccess = (e: any) => {
+          const cursor = e.target.result;
+          if (cursor) {
+            results.push(cursor.source);
+            cursor.continue();
+          } else {
+            console.timeEnd("getSSNByCursor");
+            // 遍历之后的 object 数据列表的结果
+            resolve(results);
+          }
+        };
+      });
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 
   private async getObjectStore(table: string, type?: any): Promise<IDBObjectStore> {
     try {
